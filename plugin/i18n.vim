@@ -15,6 +15,8 @@ function! I18nTranslateString()
     let fullKey = s:determineFullKey(key)
     if IsSyntaxRuby() != -1
       let @x = s:generateI18nCall(key, variables, "t('", "')")
+    elseif &filetype == 'haml' 
+      let @x = s:generateI18nCall(key, variables, "= t('", "')")
     else
       let @x = s:generateI18nCall(key, variables, "<%= t('", "') %>")
     endif
